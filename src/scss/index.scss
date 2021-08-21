@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+@import url('./fonts.scss');
+@import url('./reset.scss');
+
+body {
+  @apply bg-gray-300 dark:bg-gray-1000 transition-background-150;
+}
+
+.nt1-text-field {
+  @apply flex items-center border-b-2 border-solid border-gray-900 dark:border-gray-100 transition-border-color-150 transition-color-150;
+
+  &[data-active='true'] {
+    @apply border-naito-pink-200 dark:border-naito-pink-100;
+
+    > label {
+      @apply text-naito-pink-200 dark:text-naito-pink-100;
+    }
+
+    > input::placeholder {
+      @apply text-naito-pink-200 dark:text-naito-pink-100;
+    }
+  }
+
+  > label {
+    @apply transition-color-150;
+  }
+
+  > input {
+    @apply bg-transparent px-4 py-3 placeholder-gray-700 dark:placeholder-gray-300 outline-none;
+  }
+}
+
+.nt1-switcher-form {
+  display: none;
+}
+
+.nt1-switcher-radio:checked {
+  & ~ .nt1-switcher-form {
+    display: flex;
+  }
+
+  & + .nt1-switcher-label {
+    > label {
+      @apply border-naito-pink-200 dark:border-naito-pink-100 text-naito-pink-200 dark:text-naito-pink-100 bg-transparent cursor-not-allowed;
+
+      &:hover {
+        @apply lighten-none;
+      }
+    }
+  }
+}
+
+.nt1-checkbox-parent {
+  .label__check {
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input:checked + .label__check {
+    animation: check 300ms cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
+
+    transform: scale(0.8);
+    transform-origin: 50% 50%;
+
+    .nt1-checkbox-icon {
+      @apply text-gray-100;
+      transform: scale(0);
+      transform-origin: 50% 50%;
+      animation: icon 150ms cubic-bezier(1, 0.008, 0.565, 1.65) 0.1s 1 forwards;
+    }
+  }
+
+  @keyframes icon {
+    from {
+      opacity: 0;
+      transform: scale(0.3);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes check {
+    0% {
+      transform: scale(0.8);
+      border-width: 5px;
+    }
+    10% {
+      transform: scale(0.8);
+      opacity: 0.1;
+      background: rgba(0, 0, 0, 0.2);
+      border-width: 15px;
+    }
+    12% {
+      transform: scale(0.8);
+      opacity: 0.4;
+      background: rgba(0, 0, 0, 0.1);
+      border-width: 0;
+    }
+    50% {
+      transform: scale(1);
+      @apply border-0 bg-naito-pink-200 dark:bg-naito-pink-100;
+      opacity: 0.6;
+    }
+    100% {
+      transform: scale(1);
+      @apply border-0 bg-naito-pink-200 dark:bg-naito-pink-100;
+      opacity: 1;
+    }
+  }
+}
