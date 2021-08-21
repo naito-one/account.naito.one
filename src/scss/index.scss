@@ -11,26 +11,39 @@ body {
 }
 
 .nt1-text-field {
-  @apply flex items-center border-b-2 border-solid border-gray-900 dark:border-gray-100 transition-border-color-150 transition-color-150;
+  @apply items-center flex-row-reverse;
+  /* can't use apply with vite dev for these rules. produces a weird bug */
+  display: flex;
+  position: relative;
 
-  &[data-active='true'] {
-    @apply border-naito-pink-200 dark:border-naito-pink-100;
-
-    > label {
-      @apply text-naito-pink-200 dark:text-naito-pink-100;
-    }
-
-    > input::placeholder {
-      @apply text-naito-pink-200 dark:text-naito-pink-100;
-    }
+  > .nt1-text-field-border {
+    @apply absolute pointer-events-none w-full h-full border-b-2 border-solid border-gray-900 dark:border-gray-100 transition-border-color-150;
   }
 
   > label {
-    @apply transition-color-150;
+    @apply cursor-pointer transition-color-150;
   }
 
   > input {
-    @apply bg-transparent px-4 py-3 placeholder-gray-700 dark:placeholder-gray-300 outline-none;
+    @apply bg-transparent px-4 py-3 placeholder-gray-700 dark:placeholder-gray-300 outline-none transition-color-150;
+
+    &::placeholder {
+      @apply transition-color-150;
+    }
+
+    &:focus {
+      &::placeholder {
+        @apply text-naito-pink-200 dark:text-naito-pink-100;
+      }
+
+      + label {
+        @apply text-naito-pink-200 dark:text-naito-pink-100;
+      }
+
+      ~ .nt1-text-field-border {
+        @apply border-naito-pink-200 dark:border-naito-pink-100;
+      }
+    }
   }
 }
 
@@ -55,16 +68,7 @@ body {
 }
 
 .nt1-checkbox-parent {
-  .label__check {
-    width: 2em;
-    height: 2em;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  input:checked + .label__check {
+  input:checked + .nt1-checkbox-icon-parent {
     animation: check 300ms cubic-bezier(0.895, 0.03, 0.685, 0.22) forwards;
 
     transform: scale(0.8);

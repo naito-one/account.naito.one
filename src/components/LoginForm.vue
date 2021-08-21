@@ -5,8 +5,7 @@
     method="post"
     class="w-full sm:w-80 px-10 sm:px-0 flex-col items-center"
   >
-    <div class="nt1-text-field w-full my-3" data-active="false">
-      <label for="email" class="bi-envelope-fill" aria-hidden="true"></label>
+    <div class="nt1-text-field w-full my-3">
       <input
         class="flex-grow"
         v-model="username"
@@ -17,12 +16,15 @@
         placeholder="Email"
         required
         aria-label="Email address"
-        @focus="$event.target.parentElement.dataset.active = true"
-        @blur="$event.target.parentElement.dataset.active = false"
       />
+      <label
+        for="email"
+        class="bi-envelope-fill text-xl w-8 text-center"
+        aria-hidden="true"
+      ></label>
+      <div class="nt1-text-field-border"></div>
     </div>
-    <div class="nt1-text-field w-full my-3" data-active="false">
-      <label for="password" class="bi-lock-fill" aria-hidden="true"></label>
+    <div class="nt1-text-field w-full my-3 flex flex-row-reverse">
       <input
         class="flex-grow"
         v-model="password"
@@ -33,9 +35,13 @@
         placeholder="Password"
         required
         aria-label="Password"
-        @focus="$event.target.parentElement.dataset.active = true"
-        @blur="$event.target.parentElement.dataset.active = false"
       />
+      <label
+        for="password"
+        class="bi-lock-fill text-xl w-8 text-center"
+        aria-hidden="true"
+      ></label>
+      <div class="nt1-text-field-border"></div>
     </div>
     <div
       class="flex items-center w-full my-3 transition-color-150 checkbox-parent"
@@ -50,12 +56,18 @@
         />
         <span
           class="
-            label__check
+            nt1-checkbox-icon-parent
+            w-8
+            h-8
             border-2 border-solid border-gray-400
             dark:border-gray-600
             hover:border-4
             transition-border-radius-300
             rounded-full
+            flex
+            justify-center
+            items-center
+            cursor-pointer
           "
         >
           <span
@@ -113,6 +125,7 @@
         text-center
         hover:text-naito-pink-200
         dark:hover:text-naito-pink-100
+        select-none
       "
       href="/recover"
       >Forgot Password ?</a
