@@ -122,3 +122,19 @@ body {
     }
   }
 }
+
+/* Remove Chrome autocomplete blue background
+A mix of multiple answers that works
+https://stackoverflow.com/questions/55131944/how-to-remove-blue-background-on-chrome-autocomplete/55706002#55706002 */
+input:-webkit-autofill {
+  -webkit-text-fill-color: color('gray.900');
+  -webkit-background-clip: text;
+}
+
+.dark {
+  input:-webkit-autofill {
+    /* For some reason putting color('gray.100') doesn't compile right */
+    /* Also putting this rule in reset.scss doesn't compile right */
+    -webkit-text-fill-color: #f5f5f5;
+  }
+}
