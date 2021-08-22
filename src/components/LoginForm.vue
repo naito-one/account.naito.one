@@ -10,16 +10,17 @@
         class="flex-grow"
         v-model="username"
         type="email"
-        name="email"
-        id="email"
+        name="login-email"
+        id="login-email"
         autocomplete="email"
         placeholder="Email"
         required
         aria-label="Email address"
       />
       <label
-        for="email"
-        class="bi-envelope-fill text-xl w-8 text-center"
+        for="login-email"
+        class="text-xl w-8 text-center"
+        :class="darkMode ? 'bi-envelope-fill' : 'bi-envelope'"
         aria-hidden="true"
       ></label>
       <div class="nt1-text-field-border"></div>
@@ -29,16 +30,17 @@
         class="flex-grow"
         v-model="password"
         type="password"
-        name="password"
-        id="password"
+        name="login-password"
+        id="login-password"
         autocomplete="current-password"
         placeholder="Password"
         required
         aria-label="Password"
       />
       <label
-        for="password"
-        class="bi-lock-fill text-xl w-8 text-center"
+        for="login-password"
+        class="text-xl w-8 text-center"
+        :class="darkMode ? 'bi-lock-fill' : 'bi-lock'"
         aria-hidden="true"
       ></label>
       <div class="nt1-text-field-border"></div>
@@ -46,13 +48,16 @@
     <div
       class="flex items-center w-full my-3 transition-color-150 checkbox-parent"
     >
-      <label class="nt1-checkbox-parent cursor-pointer w-8" for="remember-me">
+      <label
+        class="nt1-checkbox-parent cursor-pointer w-8"
+        for="login-remember-me"
+      >
         <input
-          class="hidden"
+          class="absolute opacity-0"
           v-model="rememberMe"
           type="checkbox"
-          name="remember-me"
-          id="remember-me"
+          name="login-remember-me"
+          id="login-remember-me"
         />
         <span
           class="
@@ -92,7 +97,7 @@
           cursor-pointer
           select-none
         "
-        for="remember-me"
+        for="login-remember-me"
         >Keep me signed in</label
       >
     </div>
